@@ -13,15 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.example.androiddevchallenge
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.compose.setContent
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -35,7 +33,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.example.androiddevchallenge.ui.theme.MyTheme
 import com.example.androiddevchallenge.data.PuppyDB
 import com.example.androiddevchallenge.ui.theme.MyTheme
 
@@ -45,7 +42,7 @@ class DetailsActivity : AppCompatActivity() {
         val name = intent.getStringExtra("name")
         val puppies = PuppyDB().puppies
 
-        val puppy = puppies.find {it.name == name}
+        val puppy = puppies.find { it.name == name }
 
         setContent {
             Scaffold(
@@ -59,11 +56,11 @@ class DetailsActivity : AppCompatActivity() {
             ) {
                 MyTheme {
                     // A surface container using the 'background' color from the theme
-                    Column (
+                    Column(
                         modifier = Modifier
                             .fillMaxWidth()
                             .verticalScroll(rememberScrollState())
-                            ) {
+                    ) {
                         Image(
                             painterResource(id = puppy?.profilePicId ?: R.drawable.puppy0),
                             contentDescription = "Profile picture of puppy",
@@ -71,18 +68,18 @@ class DetailsActivity : AppCompatActivity() {
                             contentScale = ContentScale.FillWidth
                         )
 
-                        Text(text= " ${puppy?.name}",
-                             style = MaterialTheme.typography.h4,
-                             textAlign = TextAlign.Center
+                        Text(
+                            text = " ${puppy?.name}",
+                            style = MaterialTheme.typography.h4,
+                            textAlign = TextAlign.Center
                         )
-                        Text(text = puppy?.bio ?: "",
-                             modifier = Modifier.padding(20.dp),
-                             style = MaterialTheme.typography.body1,
-                             textAlign = TextAlign.Justify
+                        Text(
+                            text = puppy?.bio ?: "",
+                            modifier = Modifier.padding(20.dp),
+                            style = MaterialTheme.typography.body1,
+                            textAlign = TextAlign.Justify
                         )
-
                     }
-
                 }
             }
         }
